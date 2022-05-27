@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <title>PIA</title>
+
+    <link rel="stylesheet" media="screen" href="/static/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <style>
+        #main{
+          width: 1600px;
+          height: 1600px;
+        }
+    </style>
+  </head>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+                      {% if messages %}
+
+                      {% for message in messages %}
+                      {% if "Error" not in message[1]: %}
+                      <div class="alert alert-info">
+                                      <strong></strong> {{ message[1] }}
+                      </div>
+                      {% endif %}
+
+                      {% if "Error" in message[1]: %}
+                      <div class="alert alert-warning">
+                                      {{ message[1] }}
+                      </div>
+                      {% endif %}
+                      {% endfor %}
+                      {% endif %}
+                      {% endwith %}
+
+  <form action="" method="post" role="form">
+    {{ form.csrf }}
+    <body>
+
+      <br><br>
+
+      <div class="btn-group" role="group">
+          <div><button type="submit" name="action" value="Cat" class="btn btn-success btn-lg mr-5">Cat</button></div>
+          <div><button type="submit" name="action" value="Dog" class="btn btn btn-success btn-lg">Dog</button></div>
+      </div>
+      <br><br>
+      <img src="{{filename}}" alt="test image">
+    </body>
+  </form>
+
+</html>
+
